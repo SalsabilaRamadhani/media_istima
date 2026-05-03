@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Media Istima' — 3 Materi (Taaruf, Hobi, Percakapan)</title>
+<style>
+:root{
+  --bg:#f5f7fb; --card:#fff; --accent:#4b7bec; --muted:#6b7280;
+  --good:#16a34a; --bad:#ef4444;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+ background:linear-gradient(135deg,#eef2ff 0%, #f8fafc 50%, #f1f5f9 100%);
+  color:#0f172a;
+}
+.header{
+   display:flex;
+  align-items:center;
+  gap:12px;
+  padding:18px 20px;
+  background:var(--accent);
+  color:#fff;
+
+  /* TAMBAHAN */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+.header .icon{width:56px;height:56px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center}
+.header h1{margin:0;
+  font-size:22px;
+  font-weight:800;
+}
+.container{max-width:980px;margin:18px auto;padding:0 16px}
+.card{
+  background:var(--card);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 10px 30px rgba(16,24,40,0.08);
+  margin-bottom:16px;
+  transition: 0.3s;
+}
+
+.card:hover{
+  transform: translateY(-3px);
+}
+.menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.menu-tile{
+  padding:16px;
+  border-radius:16px;
+  background: white;
+  cursor:pointer;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  transition: 0.3s;
+}
+
+.menu-tile:nth-child(1){
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  color:white;
+}
+
+.menu-tile:nth-child(2){
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+  color:white;
+}
+
+.menu-tile:nth-child(3){
+  background:linear-gradient(90deg,#34d399,#10b981);
+  color:white;
+}
+
+.menu-tile:hover{
+  transform: scale(1.05);
+}
+.menu-tile:hover{transform:translateY(-4px);transition:all .18s}
+.icon-round{width:56px;height:56px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(75,123,236,0.06)}
+.muted{color:var(--muted);font-size:13px}
+.hidden{display:none}
+.slide-area{
+  background: linear-gradient(135deg, #ffffff, #eef2ff);
+  border-radius:16px;
+  padding:20px;
+}
+.arabic{
+  font-size:38px;
+  text-align:center;
+  font-family:"Amiri","Scheherazade",serif;
+  direction:rtl;
+  margin:16px 0;
+  line-height:1.8;
+  color:#1e293b;
+font-weight:600;
+letter-spacing:1px;
+}
+.controls{
+  display:flex;
+  gap:6px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.btn:hover{
+  transform:scale(1.05);
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+.btn{
+  padding:8px 12px; /* lebih kecil */
+  border-radius:8px;
+  border:0;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px; /* ini penting */
+  transition: 0.2s;
+}
+
+.btn.secondary{
+  font-size:13px;
+  padding:7px 10px;
+}
+
+.btn:hover{
+  transform: scale(1.05);
+}
+
+.btn:active{
+  transform: scale(0.95);
+}
+.btn.secondary{background:#eef2ff;color:var(--accent);border:1px solid rgba(75,123,236,0.12)}
+.center{display:flex;justify-content:center}
+.list-words{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:12px}
+.word-card{background:#fbfdff;padding:10px;border-radius:10px;border:1px solid #eef2ff}
+.feedback{margin-top:10px;font-weight:700}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:12px}
+.score-pill{background:#fff;padding:8px 12px;border-radius:999px;border:1px solid rgba(16,24,40,0.06);font-weight:700}
+.footer{margin-top:10px;text-align:center;color:var(--muted);font-size:13px}
+
+/* per-lesson backgrounds (applied to header) */
+.theme-1{background:linear-gradient(90deg,#4b7bec,#3b82f6)} /* taaruf - biru */
+.theme-2{background:linear-gradient(90deg,#7c3aed,#6d28d9)} /* hobi - ungu */
+.theme-3{background:linear-gradient(90deg,#34d399,#10b981)} /* percakapan pendek - hijau */
+
+/* small */
+@media(max-width:620px){
+  .arabic{font-size:26px}
+  .header{flex-direction:column;align-items:flex-start}
+}
+.content-box{
+  background: linear-gradient(135deg, #ffffff, #f1f5f9);
+  padding:18px;
+  border-radius:16px;
+  margin-top:12px;
+  border:1px solid #e2e8f0;
+  box-shadow:0 6px 15px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* efek garis atas */
+.content-box::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:5px;
+  background: linear-gradient(90deg,#60a5fa,#a78bfa,#fb923c);
+}
+.fade-in{
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform: translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+.score-pop{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#22c55e;
+  color:white;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:bold;
+  animation: pop 0.6s ease;
+}
+
+@keyframes pop{
+  0%{opacity:0; transform:translate(-50%,-30%) scale(0.8);}
+  50%{opacity:1; transform:translate(-50%,-50%) scale(1.1);}
+  100%{opacity:0; transform:translate(-50%,-80%) scale(1);}
+}
+.slide{
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn{
+  from{
+    opacity:0;
+    transform:translateX(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+body::before{
+  content:'';
+  position:fixed;
+  width:300px;
+  height:300px;
+  background:#ffffff30;
+  border-radius:50%;
+  top:-80px;
+  left:-80px;
+}
+
+body::after{
+  content:'';
+  position:fixed;
+  width:250px;
+  height:250px;
+  background:#ffffff20;
+  border-radius:50%;
+  bottom:-80px;
+  right:-80px;
+}
+</style>
+</head>
+<body>
+
+<!-- header will get theme-* class dynamically -->
+<div id="pageHeader" class="header theme-1">
+  <div class="icon" style="box-shadow:0 4px 10px rgba(0,0,0,0.1)">
+    <!-- small school icon -->
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#fff"/><path d="M3 17v2a1 1 0 001 1h16a1 1 0 001-1v-2" fill="#fff" opacity="0.2"/></svg>
+  </div>
+  <div style="flex:1">
+    <h1 id="appTitle">📚 Media Istima' Interaktif</h1>
+    <div id="appSubtitle" class="muted">Pilih menu lalu mulai materi. Disarankan pakai Google Chrome.</div>
+  </div>
+  <div style="text-align:right">
+    <div class="score-pill">Total Poin: <span id="globalScore">0</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- HOME -->
+  <section id="home" class="card">
+    <h2>Selamat datang</h2>
+    <p class="muted">Pilih materi untuk mulai belajar. Tiap materi berisi 10 item (mufrodat / percakapan). Setiap item punya TTS & latihan pelafalan (SR) serta kuis akhir.</p>
+
+    <div style="text-align:center;margin-top:15px;">
+  <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" 
+       style="width:120px;">
+</div>
+    <div class="menu-grid" style="margin-top:12px">
+      <div class="menu-tile" onclick="openMenu()">
+        <div class="icon-round"><svg width="28" height="28" viewBox="0 0 24 24"><path fill="#4b7bec" d="M2 6h20v2H2zM2 11h20v2H2zM2 16h20v2H2z"/></svg></div>
+        <div>
+          <div style="font-weight:800">Mulai Pembelajaran</div>
+          <div class="muted">Masuk ke daftar materi</div>
+        </div>
+      </div>
+
+      <div class="menu-tile" onclick="showRules()">
+        <div class="icon-round"><svg width="28" height="28" viewBox="0 0 24 24"><path fill="#7c3aed" d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
+        <div>
+          <div style="font-weight:800">Aturan Penggunaan</div>
+          <div class="muted">Petunjuk singkat (izinkan mic)</div>
+        </div>
+      </div>
+
+      <div class="menu-tile" onclick="showAbout()">
+        <div class="icon-round"><svg width="28" height="28" viewBox="0 0 24 24"><path fill="#fb923c" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg></div>
+        <div>
+          <div style="font-weight:800">Tentang Media</div>
+          <div class="muted">Info singkat & cara pakai</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="card hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>Daftar Materi</h2>
+      <div><button class="btn secondary" onclick="backHome()">Home</button></div>
+    </div>
+    <div id="lessonList" style="margin-top:12px"></div>
+  </section>
+
+  <!-- LESSON VIEW -->
+  <section id="lessonView" class="card hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <h2 id="lessonTitle">Materi</h2>
+        <div style="margin-top:10px;">
+  <div style="height:8px;background:#e5e7eb;border-radius:10px;">
+    <div id="progressBar" style="
+      height:8px;
+      width:0%;
+      background:linear-gradient(90deg,#60a5fa,#a78bfa);
+      border-radius:10px;
+      transition:0.3s;
+    "></div>
+  </div>
+</div>
+        <div id="lessonSub" class="muted"></div>
+      </div>
+      <div class="score-pill">Skor Materi: <span id="lessonScore">0</span></div>
+    </div>
+
+    <div class="slide-area card" style="margin-top:12px;padding:18px">
+      <div id="slideContainer"></div>
+    </div>
+
+    <div class="nav">
+      <div>
+        <button class="btn secondary" onclick="prevSlide()">← Kembali</button>
+        <button class="btn secondary" onclick="nextSlide()">Selanjutnya →</button>
+      </div>
+      <div>
+        <button class="btn" onclick="exitLesson()">Keluar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules" class="card hidden">
+    <h2>Aturan Penggunaan</h2>
+    <ol>
+      <li>Gunakan <strong>Google Chrome</strong> untuk hasil terbaik.</li>
+      <li>Izinkan akses microphone saat diminta.</li>
+      <li>Gunakan earphone untuk mendengar jelas. </li>
+      <li>Tekan Putar (🔊) untuk mendengar, Rekam (🎤) untuk latihan ucap.</li>
+    </ol>
+    <div class="center" style="margin-top:12px"><button class="btn secondary" onclick="backHome()">Kembali</button></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="card hidden">
+    <h2>Tentang Media</h2>
+    <p class="muted">Template ini dibuat untuk skripsi: tiap materi punya 10 item, TTS + SR, dan kuis. Kamu dapat mengedit list di array <code>lessons</code> di bagian script.</p>
+    <div class="center" style="margin-top:12px"><button class="btn secondary" onclick="backHome()">Kembali</button></div>
+  </section>
+
+  <footer class="footer muted card">
+    Dibuat dengan ♥ — Sesuaikan materi dan desain sesuka hati.
+  </footer>
+</div>
+
+<script>
+/* =========================
+   DATA: 3 Materi (10 item tiap materi)
+   Materi 1: Taaruf (mufrodat)
+   Materi 2: Hobi (menengah)
+   Materi 3: Percakapan (2-3 baris tiap item)
+   ========================= */
+
+const lessons = [
+  {
+    id:1,
+    title: "التَّعَارُفُ — Pemula",
+    subtitle: "Kosakata dasar perkenalan",
+    themeClass: "theme-1",
+    items: [
+      {arabic:"السَّلَامُ عَلَيْكُمْ", indo:"Salam"},
+      {arabic:"اِسْمٌ", indo:"Nama"},
+      {arabic:"عُمْرٌ", indo:"Umur"},
+      {arabic:"طَالِبٌ", indo:"Siswa"},
+      {arabic:"مُعَلِّمٌ", indo:"Guru"},
+      {arabic:"مَدْرَسَةٌ", indo:"Sekolah"},
+      {arabic:"فَصْلٌ", indo:"Kelas"},
+      {arabic:"صَدِيقٌ", indo:"Teman"},
+      {arabic:"بَيْتٌ", indo:"Rumah"},
+      {arabic:"كِتَابٌ", indo:"Buku"}
+    ],
+    quiz:[
+      {q:"Apa arti 'طَالِبٌ'?", choices:["Guru","Siswa","Sekolah"], a:1},
+      {q:"Apa arti 'بَيْتٌ'?", choices:["Rumah","Buku","Kelas"], a:0}
+    ]
+  },
+
+  {
+    id:2,
+    title: "التَّعَارُفُ — Menengah",
+    subtitle: "Kalimat sederhana perkenalan",
+    themeClass: "theme-2",
+    items: [
+      {arabic:"مَا اسْمُكَ؟", indo:"Siapa namamu?"},
+      {arabic:"اِسْمِي أَحْمَدُ", indo:"Namaku Ahmad"},
+      {arabic:"كَمْ عُمْرُكَ؟", indo:"Berapa umurmu?"},
+      {arabic:"عُمْرِي ثَلَاثَةَ عَشَرَ", indo:"Umurku 13 tahun"},
+      {arabic:"أَيْنَ تَسْكُنُ؟", indo:"Di mana kamu tinggal?"},
+      {arabic:"أَسْكُنُ فِي سِمَارَانْجَ", indo:"Saya tinggal di Semarang"},
+      {arabic:"هَلْ أَنْتَ طَالِبٌ؟", indo:"Apakah kamu siswa?"},
+      {arabic:"نَعَمْ، أَنَا طَالِبٌ", indo:"Ya, saya siswa"},
+      {arabic:"مَنْ هَذَا؟", indo:"Siapa ini?"},
+      {arabic:"هَذَا مُعَلِّمٌ", indo:"Ini adalah guru"}
+    ],
+    quiz:[
+      {q:"Apa arti 'مَا اسْمُكَ؟'?", choices:["Siapa kamu?","Siapa namamu?","Di mana kamu?"], a:1},
+      {q:"Jawaban dari 'كَمْ عُمْرُكَ؟' adalah:", choices:["اِسْمِي","عُمْرِي","أَيْنَ"], a:1}
+    ]
+  },
+
+  {
+    id:3,
+    title: "التَّعَارُفُ — Mahir",
+    subtitle: "Percakapan perkenalan sederhana",
+    themeClass: "theme-3",
+    items: [
+      {
+        arabic:`أَحْمَدُ: السَّلَامُ عَلَيْكُمْ
+بُدِي: وَعَلَيْكُمُ السَّلَامُ`,
+        indo:"Ahmad: Assalamu'alaikum\nBudi: Wa'alaikumussalam"
+      },
+      {
+        arabic:`أَحْمَدُ: مَا اسْمُكَ؟
+بُدِي: اِسْمِي بُدِي`,
+        indo:"Ahmad: Siapa namamu?\nBudi: Namaku Budi"
+      },
+      {
+        arabic:`أَحْمَدُ: كَمْ عُمْرُكَ؟
+بُدِي: عُمْرِي ثَلَاثَةَ عَشَرَ`,
+        indo:"Ahmad: Berapa umurmu?\nBudi: Umurku 13 tahun"
+      },
+      {
+        arabic:`أَحْمَدُ: أَيْنَ تَسْكُنُ؟
+بُدِي: أَسْكُنُ فِي سِمَارَانْجَ`,
+        indo:"Ahmad: Di mana kamu tinggal?\nBudi: Saya tinggal di Semarang"
+      },
+      {
+        arabic:`أَحْمَدُ: هَلْ أَنْتَ طَالِبٌ؟
+بُدِي: نَعَمْ، أَنَا طَالِبٌ`,
+        indo:"Ahmad: Apakah kamu siswa?\nBudi: Ya, saya siswa"
+      },
+      {
+        arabic:`أَحْمَدُ: مَنْ هَذَا؟
+بُدِي: هَذَا مُعَلِّمٌ`,
+        indo:"Ahmad: Siapa ini?\nBudi: Ini guru"
+      },
+      {
+        arabic:`أَحْمَدُ: كَيْفَ حَالُكَ؟
+بُدِي: بِخَيْرٍ، شُكْرًا`,
+        indo:"Ahmad: Apa kabar?\nBudi: Baik, terima kasih"
+      },
+      {
+        arabic:`أَحْمَدُ: أَيْنَ الْمَدْرَسَةُ؟
+بُدِي: الْمَدْرَسَةُ قَرِيبَةٌ`,
+        indo:"Ahmad: Di mana sekolah?\nBudi: Sekolah dekat"
+      },
+      {
+        arabic:`أَحْمَدُ: هَلْ عِنْدَكَ صَدِيقٌ؟
+بُدِي: نَعَمْ، عِنْدِي صَدِيقٌ`,
+        indo:"Ahmad: Apakah kamu punya teman?\nBudi: Ya, saya punya teman"
+      },
+      {
+        arabic:`أَحْمَدُ: إِلَى اللِّقَاءِ
+بُدِي: إِلَى اللِّقَاءِ`,
+        indo:"Ahmad: Sampai jumpa\nBudi: Sampai jumpa"
+      }
+    ],
+    quiz:[
+      {q:"Apa arti 'كَيْفَ حَالُكَ؟'?", choices:["Siapa kamu?","Apa kabar?","Di mana kamu?"], a:1},
+      {q:"Jawaban yang tepat untuk salam adalah:", choices:["نَعَمْ","وَعَلَيْكُمُ السَّلَامُ","شُكْرًا"], a:1}
+    ]
+  }
+];
+function showFinish(){
+
+  // 🔓 buka level berikutnya
+  if(currentLesson.id - 1 === unlockedLevel){
+    unlockedLevel++;
+  }
+
+  const c = els.slideContainer;
+
+  c.innerHTML = `
+    <div style="text-align:center;padding:30px">
+      <div style="font-size:70px">🎉</div>
+      <h2>Selamat!</h2>
+      <p>Kamu sudah menyelesaikan materi ini</p>
+
+      <div style="margin:15px 0;font-size:18px;">
+        Skor kamu: <b>${lessonLocalScore}</b>
+      </div>
+
+      <button class="btn" onclick="openMenu()">Kembali ke Menu</button>
+    </div>
+  `;
+}
+
+/* =========================
+   STATE & DOM refs
+   ========================= */
+let currentLesson = null;
+let currentSlideIndex = 0;
+let lessonLocalScore = 0;
+let totalScore = 0;
+let unlockedLevel = 0;
+// 0 = hanya Pemula
+// 1 = Menengah terbuka
+// 2 = Mahir terbuka
+
+const els = {
+  home: document.getElementById('home'),
+  menu: document.getElementById('menu'),
+  lessonView: document.getElementById('lessonView'),
+  rules: document.getElementById('rules'),
+  about: document.getElementById('about'),
+  lessonList: document.getElementById('lessonList'),
+  lessonTitle: document.getElementById('lessonTitle'),
+  lessonSub: document.getElementById('lessonSub'),
+  slideContainer: document.getElementById('slideContainer'),
+  globalScore: document.getElementById('globalScore'),
+  lessonScore: document.getElementById('lessonScore'),
+  pageHeader: document.getElementById('pageHeader')
+};
+
+/* =========================
+   VIEW HELPERS
+   ========================= */
+function showOnly(view){
+  ['home','menu','lessonView','rules','about'].forEach(k=> document.getElementById(k).classList.add('hidden'));
+  document.getElementById(view).classList.remove('hidden');
+}
+function openMenu(){ renderLessonList(); showOnly('menu'); }
+function backHome(){ showOnly('home'); }
+function showRules(){ showOnly('rules'); }
+function showAbout(){ showOnly('about'); }
+function exitLesson(){ if(confirm('Keluar dari materi?')) openMenu(); }
+
+/* =========================
+   RENDER LESSON LIST
+   ========================= */
+function renderLessonList(){
+  els.lessonList.innerHTML = '';
+  lessons.forEach((ls, idx)=>{
+    const div = document.createElement('div');
+    div.className = 'menu-tile';
+   if(idx <= unlockedLevel){
+  div.onclick = ()=> startLesson(idx);
+} else {
+  div.onclick = ()=> alert("Selesaikan level sebelumnya dulu ya 😊");
+  div.style.opacity = "0.5";
+}
+    const iconColor = idx===0? '#4b7bec' : (idx===1? '#7c3aed' : '#fb923c');
+    div.innerHTML = `<div class="icon-round" style="margin-right:10px"><svg width="28" height="28" viewBox="0 0 24 24"><path fill="${iconColor}" d="M12 2L2 7l10 5 10-5-10-5z"/></svg></div>
+     <div style="font-weight:800">${ls.title}</div>
+  <div class="muted">${ls.subtitle}</div>
+`;
+if(idx > unlockedLevel){
+  div.innerHTML += "<div style='font-size:12px;color:red'>🔒 Terkunci</div>";
+}
+    els.lessonList.appendChild(div);
+  });
+}
+
+/* =========================
+   START LESSON (build slides dynamically)
+   ========================= */
+function startLesson(idx){
+  currentLesson = lessons[idx];
+  currentSlideIndex = 0;
+  lessonLocalScore = 0;
+  els.lessonTitle.textContent = currentLesson.title;
+  els.lessonSub.textContent = currentLesson.subtitle || '';
+  // theme header
+  els.pageHeader.className = 'header ' + (currentLesson.themeClass || 'theme-1');
+  renderSlide();
+  showOnly('lessonView');
+}
+
+/* =========================
+   Build slides: we will create an array on the fly:
+   - slide 0: title (intro)
+   - slide 1: list of 10 items
+   - slide 2..11: each item detail (practice)
+   - slide last: quiz
+   ========================= */
+function getSlidesForLesson(lesson){
+  const slides = [];
+  slides.push({type:'title', title:lesson.title, subtitle:lesson.subtitle});
+  slides.push({type:'list', items: lesson.items});
+  // item slides
+  lesson.items.forEach((it, i)=>{
+    // type 'word' for mufrodat or 'dialog' if arabic contains newline > treat as dialog practice
+    const isDialog = (typeof it.arabic === 'string' && it.arabic.includes('\\n')) || (typeof it.arabic === 'string' && it.arabic.includes('\n'));
+    slides.push({type: isDialog? 'dialog' : 'word', item: it, index:i+1});
+  });
+  // quiz (use lesson.quiz array)
+  slides.push({type:'quiz', quiz: lesson.quiz});
+  return slides;
+}
+
+/* =========================
+   RENDER SLIDE
+   ========================= */
+function renderSlide(){ 
+  const slides = getSlidesForLesson(currentLesson);
+  const slide = slides[currentSlideIndex];
+   const bar = document.getElementById("progressBar");
+  if(bar){
+  const progress = ((currentSlideIndex+1)/slides.length)*100;
+  bar.style.width = progress + "%";
+  }
+  const c = els.slideContainer;
+  c.innerHTML = '';
+  if(!slide){ c.innerHTML = '<p class="muted">Tidak ada slide.</p>'; return; }
+
+  if(slide.type === 'title'){
+    c.innerHTML = `<div style="text-align:center">
+      <h2>${slide.title}</h2>
+      <p class="muted">${slide.subtitle}</p>
+      <div style="height:8px"></div>
+      <div><img src="${getIllustrationForLesson(currentLesson.id)}" alt="" style="max-width:280px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.06)"></div>
+    </div>`;
+    return;
+  }
+
+  if(slide.type === 'list'){
+    let html = `<div><div class="muted">Daftar 10 item:</div><div class="list-words">`;
+    slide.items.forEach((it, idx)=>{
+      html += `<div class="word-card"><div style="font-weight:700">${idx+1}. ${it.arabic}</div><div class="muted" style="margin-top:6px">${it.indo}</div></div>`;
+    });
+    html += `</div></div>`;
+    c.innerHTML = html;
+    return;
+  }
+
+  if(slide.type === 'word' || slide.type === 'dialog'){
+    const it = slide.item;
+    // for dialog preserve newlines
+    const arabHtml = (typeof it.arabic === 'string')? it.arabic.replace(/\n/g,'<br>') : it.arabic;
+   c.innerHTML = `
+  <div class="content-box">
+    <div class="muted">📘 Materi ${slide.index} dari ${currentLesson.items.length}</div>
+
+    <div class="arabic">${arabHtml}</div>
+
+    <div style="text-align:center;color:#6b7280;margin-top:8px;">
+      ${it.indo}
+    </div>
+  </div>
+
+  <div class="muted" style="text-align:center;margin-top:10px;">
+    🎧 Dengarkan lalu tirukan
+  </div>
+
+  <div class="center controls">
+    <button class="btn" id="playBoth">🎧 Putar</button>
+    <button class="btn secondary" id="playArab">🔈 Arab</button>
+    <button class="btn secondary" id="showIndo">📖 Arti</button>
+  </div>
+
+  <div class="center" style="margin-top:8px">
+    <button class="btn" id="btnRecord">🎤 Ucapkan</button>
+  </div>
+
+  <div class="center" style="margin-top:10px">
+    Hasil: <span id="srRes" style="font-weight:700;margin-left:8px">—</span>
+  </div>
+
+  <div class="feedback center" id="practiceFb"></div>
+`;
+    // button actions
+    document.getElementById('playBoth').onclick = ()=> speakBoth(it.arabic, it.indo || '');
+    document.getElementById('playArab').onclick = ()=> speakArabic(it.arabic);
+    document.getElementById('showIndo').onclick = ()=> { alert(it.indo || '—'); speakIndo(it.indo || ''); };
+    document.getElementById('btnRecord').onclick = ()=> startRecognitionForItem(it);
+    return;
+  }
+
+  if(slide.type === 'quiz'){
+    // simple quiz rendering: take array of quiz objects
+    const q = slide.quiz || [];
+    if(q.length === 0){ c.innerHTML = '<div class="muted">Tidak ada kuis untuk materi ini.</div>'; return; }
+    // show first quiz (we support multiple quiz items as simple list)
+    let html = '';
+    q.forEach((qq, qi)=>{
+      html += `<div style="margin-bottom:12px"><div class="muted">${qq.q}</div><div class="choices" id="quiz${qi}"></div><div id="quizfb${qi}" class="feedback"></div></div>`;
+    });
+    c.innerHTML = html;
+    q.forEach((qq, qi)=>{
+      const cont = document.getElementById('quiz'+qi);
+      qq.choices.forEach((ch, ci)=>{
+        const d = document.createElement('div'); d.className='choice'; d.textContent = ch;
+        d.onclick = ()=> {
+          Array.from(cont.children).forEach(chh=>chh.classList.remove('selected'));
+          d.classList.add('selected');
+          const fb = document.getElementById('quizfb'+qi);
+          if(ci === qq.a){ fb.textContent = 'Benar! +1'; fb.style.color = 'var(--good)'; totalScore++; els.globalScore.textContent = totalScore; lessonLocalScore++; els.lessonScore.textContent = lessonLocalScore; }
+          else { fb.textContent = 'Salah. Coba lagi.'; fb.style.color = 'var(--bad)'; }
+        };
+        cont.appendChild(d);
+      });
+    });
+    return;
+  }
+
+}
+
+/* =========================
+   NAV
+   ========================= */
+function nextSlide(){
+  const slides = getSlidesForLesson(currentLesson);
+  if(currentSlideIndex < slides.length -1){
+    currentSlideIndex++;
+    renderSlide();
+  } else {
+      showFinish(); // ⬅️ ini kuncinya
+  }
+}
+function prevSlide(){
+  if(currentSlideIndex>0){ currentSlideIndex--; renderSlide(); }
+  else openMenu();
+}
+
+/* =========================
+   ILLUSTRATIONS (simple data URI or emoji placeholder)
+   ========================= */
+function getIllustrationForLesson(id){
+  if(id===1) return "👋";
+  if(id===2) return "🎨";
+  return "💬";
+}
+
+/* =========================
+   TTS helpers (force voice load)
+   ========================= */
+window.speechSynthesis.getVoices();
+setTimeout(()=> window.speechSynthesis.getVoices(), 300);
+
+function findVoiceByLangPrefix(pref){
+  const vs = window.speechSynthesis.getVoices() || [];
+  return vs.find(v => v.lang && v.lang.toLowerCase().startsWith(pref.toLowerCase()));
+}
+function speakArabic(text){
+  if(!('speechSynthesis' in window)){ alert('TTS tidak tersedia di browser ini'); return; }
+  const voice = findVoiceByLangPrefix('ar') || findVoiceByLangPrefix('ar-') || findVoiceByLangPrefix('ar-x');
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = voice? voice.lang : 'ar-SA';
+  if(voice) u.voice = voice;
+  u.rate = 0.95;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+function speakIndo(text){
+  if(!('speechSynthesis' in window)){ alert('TTS tidak tersedia di browser ini'); return; }
+  const voice = findVoiceByLangPrefix('id') || findVoiceByLangPrefix('in') || findVoiceByLangPrefix('en');
+  const u = new SpeechSynthesisUtterance(text || '');
+  u.lang = voice? voice.lang : 'id-ID';
+  if(voice) u.voice = voice;
+  u.rate = 1;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+function speakBoth(ar, indo){
+  // speak Arabic first, then Indonesian after delay
+  speakArabic(ar);
+  const delay = Math.max(1200, (ar||'').length * 60);
+  setTimeout(()=> speakIndo(indo || ''), delay);
+}
+
+/* =========================
+   SPEECH RECOGNITION (SR)
+   ========================= */
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+let recognition = null;
+if(window.SpeechRecognition){
+  recognition = new window.SpeechRecognition();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  recognition.onerror = function(e){ console.warn('SR error', e); alert('Error SR: '+ e.error); };
+}
+
+/* start recognition for current practice item */
+function startRecognitionForItem(item){
+  if(!recognition){ alert('Speech Recognition tidak didukung di browser ini (pakai Chrome).'); return; }
+  const resEl = document.getElementById('srRes');
+  const fbEl = document.getElementById('practiceFb');
+  resEl.textContent = 'Merekam...';
+  fbEl.textContent = '';
+  recognition.lang = 'ar-SA';
+  recognition.start();
+
+  recognition.onresult = function(evt){
+    const text = (evt.results[0][0].transcript || '');
+    resEl.textContent = text;
+    // normalize
+    const normalized = text.toLowerCase().replace(/\s+/g,'');
+    const key = (item.arabic || item.indo || '').toLowerCase().replace(/\s+/g,'');
+    // check: if normalized contains important substrings (simplified)
+    const ok = key && (normalized.includes(key.replace(/[\u0600-\u06FF]/g,'')) || text.includes(item.arabic) || normalized.includes(item.indo || ''));
+    if(ok){
+      fbEl.textContent = 'Pelafalan mirip/benar! +1';
+      fbEl.style.color = 'var(--good)';
+      totalScore++; lessonLocalScore++; showScorePop(); els.globalScore.textContent = totalScore; els.lessonScore.textContent = lessonLocalScore;
+    } else {
+      fbEl.textContent = 'Pelafalan kurang cocok, coba lagi.';
+      fbEl.style.color = 'var(--bad)';
+    }
+  };
+
+  recognition.onspeechend = function(){ recognition.stop(); };
+}
+
+/* =========================
+   helpers & init
+   ========================= */
+function getSlidesForLesson(lesson){
+  return (function(){ let s=[]; s.push({type:'title',title:lesson.title,subtitle:lesson.subtitle}); s.push({type:'list',items:lesson.items}); lesson.items.forEach((it,i)=>{ const isDialog = (typeof it.arabic==='string' && (it.arabic.includes('\\n')||it.arabic.includes('\n'))); s.push({type:isDialog?'dialog':'word', item:it, index:i+1}); }); s.push({type:'quiz',quiz:lesson.quiz}); return s; })();
+}
+function showScorePop(){
+  const div = document.createElement("div");
+  div.className = "score-pop";
+  div.textContent = "+1 Poin!";
+  document.body.appendChild(div);
+
+  setTimeout(()=> div.remove(), 600);
+}
+(function init(){
+  els.globalScore.textContent = totalScore;
+  els.lessonScore.textContent = lessonLocalScore;
+  renderLessonList();
+  showOnly('home');
+  // optional log voices
+  setTimeout(()=> {
+    try{
+      const vs = speechSynthesis.getVoices();
+      //console.log('voices', vs.map(v=>v.name+' '+v.lang));
+    }catch(e){}
+  },600);
+})();
+</script>
+
+</body>
+</html>
